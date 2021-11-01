@@ -1,4 +1,4 @@
-import { Route, Switch} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Leads from './Leads';
 import NewLead from './NewLead';
 import Register from './Register';
