@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { registerUser } from '../../../services/register-service';
 
 import Button from '../../Components/Button';
 import Input from '../../Components/Input';
@@ -27,7 +28,7 @@ export default function Register() {
         if (!validate()) {
             return
         }
-        
+        registerUser({user: user.user, password: user.password})
         history.push('./leads');
     }
 
