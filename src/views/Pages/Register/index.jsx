@@ -15,7 +15,7 @@ export default function Register() {
         confirmPassword: ''
     });
     const [error, setError] = useState({});
-    
+
     const valueInput = ev => setUser({
         ...user,
         [ev.target.name]: ev.target.value
@@ -24,7 +24,32 @@ export default function Register() {
     function handleSubmit(ev) {
         ev.preventDefault();
 
+        if (!validate()) {
+            return
+        }
+        
         history.push('./leads');
+    }
+
+    function validate() {
+        const errorMessage = {}
+        const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[$*&@#]).{8,}$/;
+
+        if (!user.user) {
+            errorMessage.user = 'Informe um usuário'
+        }
+
+        if (!user.password) {
+            errorMessage.password = 'Informe uma senha';
+        } else if (!pattern.exec(user.password)) {
+            errorMessage.password =
+                'O password deve possuir ao menos 8 caracteres, com um caracter especial, um numerico e um alfanumerico';
+        } else if (user.password !== user.confirmPassword) {
+            errorMessage.confirmPassword = 'Senhas não coincidem';
+        }
+        return (
+            Object.keys(errorMessage).length === 0 ? true : setError(errorMessage)
+        )
     }
 
     return (
@@ -58,6 +83,7 @@ export default function Register() {
                         type='password'
                         onChange={valueInput}
                         value={user.confirmPassword}
+                        error={error.confirmPassword}
                     />
                     <Button name='Registrar' type='submit' />
                 </form>
