@@ -1,5 +1,21 @@
-.table{
-    margin-left: 5%;
-    margin-bottom: 5%;
-    display: flex;
+table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    margin: 10px auto;
+}
+  
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 5px;
+}
+  
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+th {
+    background: #6d6d6d;
 }

@@ -1,9 +1,17 @@
+import { useHistory } from 'react-router';
+
 import Button from '../../Components/Button';
-import Table from '../../Components/Table';
+import Board from '../../Components/Board';
 
 import './styles.css';
 
 export default function Leads() {
+    const history = useHistory();
+
+    function handleNewLead(){
+        history.push('/newLead')
+    }
+
     return (
         <>
             <div className='container-leads'>
@@ -19,10 +27,10 @@ export default function Leads() {
                         <Button
                             className='button-lead'
                             name='Novo Lead (+)'
-                            onClick={() => alert('ola')}
+                            onClick={handleNewLead}
                         />
                     </div>
-                    <Table />
+                    <Board />
                 </div>
             </div>
         </>
