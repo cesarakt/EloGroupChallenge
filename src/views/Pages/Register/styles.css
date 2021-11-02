@@ -32,3 +32,11 @@
 .form-register{
     width: 300px;
 }
+
+button{
+    margin-top: 30px;
+    margin-bottom: 40px;
+} 
+button:hover{
+    background: #DDDDDD;
+}

@@ -1,0 +1,15 @@
+.table-list{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.title-list{
+    border: 1px solid #000000;
+    padding: 20px;
+    background: #808080;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
