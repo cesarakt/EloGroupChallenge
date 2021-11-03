@@ -16,3 +16,19 @@ export function newLead(item: any) {
 
   localStorage.setItem('leads', JSON.stringify(newLeads));
 }
+
+export function getLeads() {
+  const rawLeads: any = localStorage.getItem("leads");
+
+  return JSON.parse(rawLeads) || [];
+}
+
+export function updateLead(newLead: any) {
+  const leads = getLeads();
+
+  const newLeads = leads.map((lead: any) =>
+    lead.id === newLead.id ? newLead : lead
+  );
+
+  localStorage.setItem("leads", JSON.stringify(newLeads));
+}
