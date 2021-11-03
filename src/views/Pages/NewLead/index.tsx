@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router';
 
 import { SubmitHandler, Controller, useForm } from 'react-hook-form';
@@ -16,7 +16,7 @@ import {
 import Table from '../../Components/Table';
 import { Logo } from '../../Components/Logo';
 
-import { newLead } from '../../../services/lead-service';
+import { createLead } from '../../../services/lead-service';
 
 import './styles.css';
 
@@ -32,8 +32,7 @@ const NewLeadFormSchema = yup.object().shape({
     .string()
     .max(20, '20 caracteres no máximo')
     .required('Telefone obrigatório'),
-  email: yup.string().email('E-mail inválido').required('E-mail obrigatório'),
-  oportunidades: yup.array().required('Preencher uma oportunidade ao menos')
+  email: yup.string().email('E-mail inválido').required('E-mail obrigatório')
 });
 
 const NewLead: React.FC = () => {
@@ -48,21 +47,6 @@ const NewLead: React.FC = () => {
   });
 
   const [opportunities, setOpportunities] = useState<string[]>([]);
-
-  const handleNewLead: SubmitHandler<NewLeadFormData> = async (value) => {
-    newLead({
-      name: value.name,
-      phone: value.phone,
-      email: value.email,
-      oportunidades: opportunities,
-      position: 0
-    });
-    alert('Lead Cadatrado com Sucesso!');
-    history.push('/leads');
-
-  };
-
-  console.log(opportunities)
 
   function addOpportunity(name: any) {
     setOpportunities((prev: any) => {
@@ -90,6 +74,18 @@ const NewLead: React.FC = () => {
       ? setOpportunities(['RPA', 'Produto Digital', 'Analytics', 'BPM'])
       : setOpportunities([]);
   }
+
+  const handleNewLead: SubmitHandler<NewLeadFormData> = async (value) => {
+    createLead({
+      name: value.name,
+      phone: value.phone,
+      email: value.email,
+      oportunidades: opportunities,
+      position: 0
+    });
+    alert('Lead Cadatrado com Sucesso!');
+    history.push('/leads');
+  };
 
   return (
     <Hero size="fullheight">

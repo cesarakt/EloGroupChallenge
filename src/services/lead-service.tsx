@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-export function newLead(item: any) {
+export function createLead(item: any) {
   const blankLead = localStorage.getItem('leads');
 
   const leads = JSON.parse(blankLead!) || [];
@@ -18,9 +18,9 @@ export function newLead(item: any) {
 }
 
 export function getLeads() {
-  const rawLeads: any = localStorage.getItem("leads");
+  const blankLead: any = localStorage.getItem("leads");
 
-  return JSON.parse(rawLeads) || [];
+  return JSON.parse(blankLead) || [];
 }
 
 export function updateLead(newLead: any) {
