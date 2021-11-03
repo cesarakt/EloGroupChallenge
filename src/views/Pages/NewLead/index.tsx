@@ -10,7 +10,11 @@ import {
   Label,
   Control,
   Input,
-  Help, Hero, Container, Column, Box,
+  Help,
+  Hero,
+  Container,
+  Column,
+  Box
 } from 'rbx';
 
 import Table from '../../Components/Table';
@@ -48,18 +52,20 @@ const NewLead: React.FC = () => {
 
   const [opportunities, setOpportunities] = useState<string[]>([]);
 
-  function addOpportunity(name: any) {
-    setOpportunities((prev: any) => {
+  function addOpportunity(name: string) {
+    setOpportunities((prev: string[]) => {
       const isTrue = prev.includes(name);
       return isTrue ? prev : [...prev, name];
     });
+
   }
 
-  function removeOpportunity(name: any) {
+  function removeOpportunity(name: string) {
     setOpportunities((prev) => prev.filter((opp) => opp !== name));
   }
 
-  function handleRowClick(data: any, { target }: any) {
+  function handleRowClick(data: string[], { target }: any) {
+
     if (target instanceof HTMLInputElement) {
       const opportunity = data[1];
 
@@ -70,6 +76,7 @@ const NewLead: React.FC = () => {
   }
 
   function handleCheckOpportunities(ev: any) {
+    console.log(ev)
     ev.target.checked
       ? setOpportunities(['RPA', 'Produto Digital', 'Analytics', 'BPM'])
       : setOpportunities([]);
